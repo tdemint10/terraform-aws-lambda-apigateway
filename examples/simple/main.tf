@@ -9,13 +9,7 @@ terraform {
   }
 }
 
-resource "random_string" "name" {
-  length  = 10
-  special = false
-  upper   = false
-}
-
 module "apigateway" {
   source = "../.."
-  name   = random_string.name.result
+  name   = "example"
 }
