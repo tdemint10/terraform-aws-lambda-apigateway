@@ -21,20 +21,17 @@ module "example" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.44.0 |
-
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.45.0 |
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_name"></a> [name](#input\_name) | Name of the user to greet | `string` | `"World"` | no |
-
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | <a name="output_greeting"></a> [greeting](#output\_greeting) | A standard greeting |
-
 ## Resources
 
 | Name | Type |

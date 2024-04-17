@@ -11,5 +11,5 @@ terraform {
 data "aws_caller_identity" "current" {}
 
 locals {
-    greeting = "Hello, ${var.name} from ${data.aws_caller_identity.current.account_id}"
+  greeting = "Hello test, ${var.name} from ${data.aws_caller_identity.current.account_id}"
 }
