@@ -68,6 +68,6 @@ validation on each commit, catching more egregious errors and ensuring
 be installed via the following commands:
 
 ```shell
-$ brew install pre-commit tflint trivy go
+$ brew install pre-commit terraform-docs tflint trivy go
 $ pre-commit install
 ```
