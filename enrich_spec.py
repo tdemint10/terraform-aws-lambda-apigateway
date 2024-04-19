@@ -6,7 +6,7 @@ with the appropriate APIGateway extensions to OpenAPI. These will configure
 Lambda function integrations, authorizer configuration, CORS settings, and
 request validation.
 
-Input & out are configured to work with Terraform's external data resource: as
+Input & output are configured to work with Terraform's external data resource: as
 JSON objects passed via stdin and stdout. It can be invoked via Terraform like
 so:
 
