@@ -5,6 +5,7 @@ on:
     branches:
       - 'main'
     paths:
+      - '**.py'
       - '**.tf'
 
 jobs:
@@ -22,6 +23,11 @@ jobs:
       
       - name: Terraform Format
         run: terraform fmt -check -recursive
+
+      - name: Python Format
+        uses: psf/black@stable
+        with:
+          options: "--check --verbose"
 
   validate:
     name: 'Validate Terraform'
