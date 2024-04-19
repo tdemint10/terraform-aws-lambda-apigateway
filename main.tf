@@ -5,11 +5,11 @@ terraform {
       source  = "hashicorp/aws"
       version = ">= 5.45.0"
     }
+    external = {
+      source  = "hashicorp/external"
+      version = ">= 2.3.3"
+    }
   }
 }
 
 data "aws_caller_identity" "current" {}
-
-locals {
-    greeting = "Hello, ${var.name} from ${data.aws_caller_identity.current.account_id}"
-}
