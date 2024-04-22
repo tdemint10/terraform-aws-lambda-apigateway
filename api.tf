@@ -1,27 +1,6 @@
-data "external" "enriched_specification" {
-  program = ["python", "${path.module}/enrich_spec.py"]
-  query = {
-    authorizers = jsonencode({
-      for name, config in var.authorizers :
-      name => {
-        iam_role_arn          = aws_iam_role.apigateway_authorizers[0].arn
-        result_ttl_in_seconds = config.result_ttl_in_seconds
-        invoke_arn            = config.lambda.invoke_arn
-        identity_validation   = config.identity_validation
-      }
-    })
-    cors_configuration = jsonencode(var.cors_configuration)
-    endpoints          = jsonencode(var.endpoints)
-    service            = var.service
-    specification      = jsonencode(yamldecode(var.api_specification))
-    validation         = var.validation
-    version            = var.api_version
-  }
-}
-
 resource "aws_api_gateway_rest_api" "this" {
   api_key_source               = "AUTHORIZER"
-  body                         = data.external.enriched_specification.result.json_specification
+  body                         = {}
   disable_execute_api_endpoint = true
   name                         = var.service
 

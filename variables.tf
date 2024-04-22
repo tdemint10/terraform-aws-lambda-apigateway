@@ -1,15 +1,3 @@
-variable "api_specification" {
-  type        = string
-  default     = null
-  description = "The service's OpenAPI v3 specification (in YAML)"
-}
-
-variable "api_version" {
-  type        = string
-  default     = "1.0.0"
-  description = "Version identifier for the API"
-}
-
 variable "authorizers" {
   type = map(
     object({
@@ -31,15 +19,6 @@ variable "cache_size" {
     condition     = contains(["0", "0.5", "1.6", "6.1", "13.5", "28.4", "58.2", "118", "237"], var.cache_size)
     error_message = "Cache size must be one of 0, 0.5, 1.6, 6.1, 13.5, 28.4, 58.2, 118, or 237"
   }
-}
-
-variable "cors_configuration" {
-  type = object({
-    allow_headers = optional(set(string), ["*"])
-    allow_origins = optional(set(string), ["*"])
-  })
-  default     = {}
-  description = "Map defining API CORS settings."
 }
 
 variable "domain_certificate_arn" {
@@ -91,15 +70,4 @@ variable "log_retention_in_days" {
 variable "service" {
   type        = string
   description = "Name of the service"
-}
-
-variable "validation" {
-  type        = string
-  default     = "NONE"
-  description = "How to validate incoming requests against the OpenAPI spec before invoking Lambda handlers"
-
-  validation {
-    condition     = contains(["NONE", "PARAMS", "BODY", "FULL"], var.validation)
-    error_message = "Validation must be one of NONE, PARAMS, BODY, or FULL"
-  }
 }
