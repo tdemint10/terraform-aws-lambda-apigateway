@@ -2,8 +2,11 @@ terraform {
   required_version = "~> 1.8"
 }
 
+# trivy:ignore:AVD-AWS-0057: Not needed for example
+# trivy:ignore:AVD-AWS-0066: Tracing not needed for example
 module "lambda_function" {
-  source = "terraform-aws-modules/lambda/aws@7.2.6"
+  source  = "terraform-aws-modules/lambda/aws"
+  version = "7.2.6"
 
   function_name = "example-lambda"
   description   = "Example lambda function"
