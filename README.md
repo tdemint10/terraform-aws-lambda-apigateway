@@ -41,7 +41,6 @@ module "example" {
 | <a name="output_apigateway_domain_name"></a> [apigateway\_domain\_name](#output\_apigateway\_domain\_name) | Regional domain name of the APIGateway, for use with custom DNS records |
 | <a name="output_apigateway_domain_zone"></a> [apigateway\_domain\_zone](#output\_apigateway\_domain\_zone) | Regional hosted zone ID of the APIGateway's domain, for use with custom DNS records |
 | <a name="output_openapi_spec_json"></a> [openapi\_spec\_json](#output\_openapi\_spec\_json) | The OpenAPI specification (in JSON) used to configure the APIGateway |
-| <a name="output_openapi_spec_yaml"></a> [openapi\_spec\_yaml](#output\_openapi\_spec\_yaml) | The OpenAPI specification (in YAML) used to configure the APIGateway |
 | <a name="output_stage_arn"></a> [stage\_arn](#output\_stage\_arn) | ARN of the APIGateway stage |
 ## Resources
 

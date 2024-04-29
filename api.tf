@@ -1,6 +1,5 @@
 resource "aws_api_gateway_rest_api" "this" {
   api_key_source               = "AUTHORIZER"
-  body                         = {}
   disable_execute_api_endpoint = true
   name                         = var.service
 
@@ -21,9 +20,6 @@ resource "aws_api_gateway_domain_name" "this" {
 
 resource "aws_api_gateway_deployment" "this" {
   rest_api_id = aws_api_gateway_rest_api.this.id
-  triggers = {
-    redeployment = sha1(aws_api_gateway_rest_api.this.body)
-  }
 
   lifecycle {
     create_before_destroy = true
