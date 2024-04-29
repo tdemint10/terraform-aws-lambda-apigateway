@@ -30,11 +30,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Repo Access
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.PIPENV_LAMBDAS_DEPLOY_KEY }}
-
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
