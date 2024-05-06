@@ -10,19 +10,17 @@ module "lambda_function" {
 
   function_name = "example-lambda"
   description   = "Example lambda function"
-  handler       = "src.handlers.handle"
+  handler       = "handlers.handle"
   runtime       = "python3.10"
 
-  source_path = "./"
+  source_path = "./src"
 }
 
 # trivy:ignore:AVD-AWS-0190: Caching not needed for example
 module "apigateway" {
   source = "../.."
 
-  domain_certificate_arn = "arn::MyServiceDomain"
-  domain_name            = "MyServiceDomain"
-  service                = "MyService"
+  service = "MyService"
 
   endpoints = {
     "GET /v1/greeting" : {

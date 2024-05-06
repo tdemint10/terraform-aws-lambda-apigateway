@@ -1,5 +1,23 @@
 resource "aws_api_gateway_rest_api" "this" {
-  api_key_source               = "AUTHORIZER"
+  api_key_source = "AUTHORIZER"
+  body = jsonencode({
+    openapi = "3.0.1"
+    info = {
+      title   = var.service
+      version = "1.0"
+    }
+    paths = {
+      "/v1/greeting" = {
+        get = {
+          x-amazon-apigateway-integration = {
+            httpMethod = "GET"
+            type       = "AWS"
+            uri        = values(var.endpoints)[0].lambda.invoke_arn
+          }
+        }
+      }
+    }
+  })
   disable_execute_api_endpoint = true
   name                         = var.service
 
@@ -8,18 +26,11 @@ resource "aws_api_gateway_rest_api" "this" {
   }
 }
 
-resource "aws_api_gateway_domain_name" "this" {
-  domain_name              = var.domain_name
-  regional_certificate_arn = var.domain_certificate_arn
-  security_policy          = "TLS_1_2"
-
-  endpoint_configuration {
-    types = ["REGIONAL"]
-  }
-}
-
 resource "aws_api_gateway_deployment" "this" {
   rest_api_id = aws_api_gateway_rest_api.this.id
+  triggers = {
+    redeployment = sha1(aws_api_gateway_rest_api.this.body)
+  }
 
   lifecycle {
     create_before_destroy = true
@@ -65,12 +76,6 @@ resource "aws_cloudwatch_log_group" "api_access" {
   name              = "API-Gateway-Execution-Logs_${aws_api_gateway_rest_api.this.id}/default"
   retention_in_days = var.log_retention_in_days
   kms_key_id        = var.kms_key_arn
-}
-
-resource "aws_api_gateway_base_path_mapping" "this" {
-  api_id      = aws_api_gateway_rest_api.this.id
-  domain_name = aws_api_gateway_domain_name.this.domain_name
-  stage_name  = aws_api_gateway_stage.this.stage_name
 }
 
 resource "aws_api_gateway_method_settings" "overrides" {

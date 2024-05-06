@@ -21,16 +21,6 @@ variable "cache_size" {
   }
 }
 
-variable "domain_certificate_arn" {
-  type        = string
-  description = "ARN of an AWS-managed SSL certificate that covers the service's domain name"
-}
-
-variable "domain_name" {
-  type        = string
-  description = "Service's domain name"
-}
-
 variable "endpoints" {
   type = map(
     object({
