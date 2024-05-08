@@ -10,9 +10,21 @@ resource "aws_api_gateway_rest_api" "this" {
       "/v1/greeting" = {
         get = {
           x-amazon-apigateway-integration = {
-            httpMethod = "GET"
+            httpMethod = "POST"
             type       = "AWS"
             uri        = values(var.endpoints)[0].lambda.invoke_arn
+
+            responses = {
+              default = {
+                statusCode = "200"
+              }
+            }
+          }
+
+          responses = {
+            200 = {
+              description = "Success"
+            }
           }
         }
       }
