@@ -36,6 +36,7 @@ module "example" {
 
 | Name | Description |
 |------|-------------|
+| <a name="output_api_url"></a> [api\_url](#output\_api\_url) | The URL of the APIGateway deployment |
 | <a name="output_openapi_spec_json"></a> [openapi\_spec\_json](#output\_openapi\_spec\_json) | The OpenAPI specification (in JSON) used to configure the APIGateway |
 | <a name="output_stage_arn"></a> [stage\_arn](#output\_stage\_arn) | ARN of the APIGateway stage |
 ## Resources
